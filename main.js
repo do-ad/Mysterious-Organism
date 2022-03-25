@@ -13,7 +13,15 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+const pAequorFactory = (num, bases) => {
+  return {
+    specimenNum: num,
+    dna: bases
+  }
+}
 
+// const test = pAequorFactory(1, mockUpStrand());
+// console.log(test.specimenNum + ' ' + test.dna);
 
 
 
