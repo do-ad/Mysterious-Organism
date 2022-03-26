@@ -16,12 +16,29 @@ const mockUpStrand = () => {
 const pAequorFactory = (num, bases) => {
   return {
     specimenNum: num,
-    dna: bases
+    dna: bases,
+    mutate() {
+      const dnaBases = ['A', 'T', 'C', 'G'];
+      const location = Math.floor(Math.random() * 15);
+      const base = this.dna[location];
+      const indexOfBase = dnaBases.findIndex(element => element === base);
+      if (indexOfBase !== 3) {
+        this.dna[location] = dnaBases[indexOfBase + 1];
+        //console.log(`Changing base ${base} at index ${location + 1} to ${dnaBases[indexOfBase+1]}`);
+      }  else { 
+        this.dna[location] = dnaBases[0];
+        //console.log(`Changing base ${base} at index ${location + 1} to ${dnaBases[0]}`);
+      }
+      return this.dna;
+    }
   }
 }
 
-// const test = pAequorFactory(1, mockUpStrand());
-// console.log(test.specimenNum + ' ' + test.dna);
+const test = pAequorFactory(1, mockUpStrand());
+console.log(test);
+test.mutate();
+console.log(test);
+//console.log(test.specimenNum + ' ' + test.dna);
 
 
 
