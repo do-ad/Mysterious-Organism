@@ -30,14 +30,26 @@ const pAequorFactory = (num, bases) => {
         //console.log(`Changing base ${base} at index ${location + 1} to ${dnaBases[0]}`);
       }
       return this.dna;
+    },
+    compareDNA(pila) {
+      console.log(`Specimen ${this.specimenNum} = ${this.dna}`);
+      console.log(`Specimen ${pila.specimenNum} = ${pila.dna}`);
+      let identical = 0;
+      for (let i = 0; i < pila.dna.length; i++) {
+        //console.log(this.dna[i] + pila.dna[i]);
+        if (this.dna[i] === pila.dna[i]) identical++;
+      }
+      console.log(`specimen #1 and specimen #2 have ${identical} identical bases or ` + (identical/this.dna.length * 100).toFixed(2) + '% DNA in common.');
     }
   }
 }
 
 const test = pAequorFactory(1, mockUpStrand());
 console.log(test);
-test.mutate();
-console.log(test);
+test.compareDNA(pAequorFactory (99, mockUpStrand()));
+
+// test.mutate();
+// console.log(test);
 //console.log(test.specimenNum + ' ' + test.dna);
 
 
