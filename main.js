@@ -40,14 +40,33 @@ const pAequorFactory = (num, bases) => {
         if (this.dna[i] === pila.dna[i]) identical++;
       }
       console.log(`specimen #1 and specimen #2 have ${identical} identical bases or ` + (identical/this.dna.length * 100).toFixed(2) + '% DNA in common.');
+    },
+    willLikelySurvive() {
+      let survivalBases = 0;
+      for (let i = 0; i < this.dna.length; i++) {
+        if (this.dna[i] === 'C' || this.dna[i] === 'G') survivalBases++;
+      }
+      //console.log(survivalBases);
+      return survivalBases / this.dna.length * 100 > 60 ? true : false;
     }
   }
 }
 
 const test = pAequorFactory(1, mockUpStrand());
-console.log(test);
-test.compareDNA(pAequorFactory (99, mockUpStrand()));
 
+const survivable = [];
+let specimenNumber = 2;
+while (survivable.length < 30) {
+  const testSpecimen = pAequorFactory(specimenNumber, mockUpStrand());
+  if (testSpecimen.willLikelySurvive()) survivable.push(testSpecimen);
+  specimenNumber++;
+}
+console.log(survivable.length);
+
+//console.log(test);
+//console.log(test.willLikelySurvive());
+//console.log(test.willLikelySurvive());
+//test.compareDNA(pAequorFactory (99, mockUpStrand()));
 // test.mutate();
 // console.log(test);
 //console.log(test.specimenNum + ' ' + test.dna);
